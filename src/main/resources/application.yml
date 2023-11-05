@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      username: yassine
+      password: yassine
+      host: localhost
+      port: 27017
+      database: yassinecoding
+      authentication-database: admin
