@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -20,4 +22,9 @@ public class ProductCreateUpdateDTO {
     @NotBlank(message = "Product description must not be empty.")
     @Size(max = 500, message = "Product description must not exceed 500 characters.")
     private String description;
+    private List<String> tags;
+    private String categoryId; // This can be used to associate a product with a category
+
+
+
 }

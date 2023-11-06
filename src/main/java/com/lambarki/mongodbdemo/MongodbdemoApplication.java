@@ -1,7 +1,7 @@
 package com.lambarki.mongodbdemo;
 
-import com.lambarki.mongodbdemo.product.Product;
-import com.lambarki.mongodbdemo.product.ProductRepository;
+import com.lambarki.mongodbdemo.category.Category;
+import com.lambarki.mongodbdemo.category.CategoryRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,14 +15,20 @@ public class MongodbdemoApplication {
 
 	//@Bean
 	public CommandLineRunner commandLineRunner(
-			ProductRepository productRepository
+			CategoryRepository categoryRepository
 	){
 		return args -> {
-			var product = Product.builder()
-					.name("iPhone")
-					.description("Smart Phone")
+			var category = Category.builder()
+					.name("cat 1")
+					.description("cat 1")
 					.build();
-			productRepository.insert(product);
+			var category2 = Category.builder()
+					.name("cat 2")
+					.description("cat 2")
+					.build();
+			categoryRepository.insert(category);
+			categoryRepository.insert(category2);
+
 		};
 	}
 }

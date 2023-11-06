@@ -10,8 +10,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,14 +29,10 @@ class ProductControllerTest {
 
     @BeforeEach
     void setUp() {
-        productDTO = new ProductCreateUpdateDTO();
-        productDTO.setName("Test Product");
-        productDTO.setDescription("Test Description");
+        // Initialized with sample data, ensure that you have appropriate constructor or setters in the DTO classes
+        productDTO = new ProductCreateUpdateDTO("Test Product", "Test Description", null, null); // Assuming tags and category are nullable
 
-        productResponseDTO = new ProductResponseDTO();
-        productResponseDTO.setId("1");
-        productResponseDTO.setName("Test Product");
-        productResponseDTO.setDescription("Test Description");
+        productResponseDTO = new ProductResponseDTO("1", "Test Product", "Test Description", null, null); // Assuming tags and category are nullable
     }
 
     @Test
@@ -46,7 +43,8 @@ class ProductControllerTest {
 
         assertNotNull(response.getBody());
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals("1", response.getBody().getId());
         assertEquals("Test Product", response.getBody().getName());
+        assertEquals("Test Description", response.getBody().getDescription());
     }
-
 }
